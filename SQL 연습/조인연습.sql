@@ -1,4 +1,4 @@
--- join
+-- inner join = join
 
 -- 예제 1
 -- employees 테이블과 titles 테이블을 join하여 직원의 이름과 직책을 모두 출력하세요.
@@ -16,7 +16,7 @@ select a.emp_no, a.first_name, b.title, a.gender from employees a, titles b wher
 -- 1) natural join
 -- 두 테이블에 공통 컬럼이 있으면 별다른 조건없이 묵시적으로 조인됨
 -- 쓸일이 없음
-select a.first_name, b.title from employees a join titles b;
+select a.first_name, b.title from employees a natural join titles b;
 -- on a.emp_no = b.emp_no; 이거는 생략됨
 
 -- 2) join ~ using
@@ -24,3 +24,29 @@ select a.first_name, b.title from employees a join titles b using(emp_no);
 
 -- 3) join ~ on
 select a.first_name, b.title from employees a join titles b on a.emp_no = b.emp_no;
+
+
+-- outer join
+-- insert into dept values(null, '총무');
+-- insert into dept values(null, '개발');
+-- insert into dept values(null, '영업');
+-- insert into dept values(null, '기획');
+select * from dept;
+insert into emp values(null, '둘리', 1);
+insert into emp values(null, '마이콜', 2);
+insert into emp values(null, '또치', 3);
+insert into emp values(null, '길동', null);
+select * from emp;
+
+select a.name as '이름', ifnull(b.name, '없음') as '부서' from emp a left join dept b on a.dept_no = b.no; -- join 을 기준으로 왼쪽께 나오게하고싶으면 left, 오른쪽을 나오고싶게 할려면 right
+select ifnull(a.name, '없음') as '이름', b.name as '부서' from emp a right join dept b on a.dept_no = b.no;
+
+-- 실습문제 1:
+-- 현재 회사 상황을 반영한 직원별 근무부서를 사번, 직원 전체이름, 근무부서 형태로 출력해 보세요.
+select a.emp_no, a.first_name, c.dept_name from employees a, dept_emp b, departments c 
+where a.emp_no = b.emp_no and b.dept_no = c.dept_no and b.to_date = '9999-01-01';
+
+-- 실습문제 2:
+-- 현재 회사에서 지급되고 있는 급여체계를 반영한 결과를 출력하세요. 사번,  전체이름, 연봉  이런 형태로 출력하세요.
+select a.emp_no, a.first_name, b.salary from employees a, salaries b 
+where a.emp_no = b.emp_no and b.to_date = '9999-01-01';
