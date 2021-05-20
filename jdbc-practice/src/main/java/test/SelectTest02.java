@@ -2,15 +2,15 @@ package test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class SelectTest02 {
 
-	public static void main(String[] args) {
+	public static void main(Long emp_no, String birth_date, String last_name, String first_name) {
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			// 1. JDBC Driver 로딩
@@ -20,14 +20,20 @@ public class SelectTest02 {
 			String url = "jdbc:mysql://192.168.254.31:3307/employees";
 			conn = DriverManager.getConnection(url, "hr", "hr"); // url, 아이디, 비번
 
-			// 3. Statement 생성
-			stmt = conn.createStatement();
+			// 3. SQL문 준비
+			String sql = "select ?, ?, ? from employees where ? like \\\"pat%\\\"";
+			pstmt = conn.prepareStatement(sql);
 			
-			// 4. SQL문을 실행
-			String sql = "select emp_no, birth_date, last_name from employees where first_name like \"pat%\"";
-			rs = stmt.executeQuery(sql);
+			// 4. 바인딩(Binding)
+			pstmt.setLong(1, emp_no);
+			pstmt.setString(2, birth_date);
+			pstmt.setString(3, last_name);
+			pstmt.setString(4, first_name);
 			
-			// 5. 결과 가져오기
+			// 5. SQL문을 실행
+			rs = pstmt.executeQuery();
+			
+			// 6. 결과 가져오기
 			while(rs.next()) {
 				Long empNo = rs.getLong(1);
 				String birthDate = rs.getString(2);
@@ -44,8 +50,8 @@ public class SelectTest02 {
 				if (rs != null) {
 					rs.close();
 				}
-				if (stmt != null) {
-					stmt.close();
+				if (pstmt != null) {
+					pstmt.close();
 				}
 				if (conn != null) {
 					conn.close();
