@@ -2,6 +2,7 @@ package test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -20,7 +21,7 @@ public class UpdateTest02 {
 
 	public static Boolean update(DeptVo vo) {
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		boolean result = false;
 		try {
 			// 1. JDBC Driver 로딩
@@ -30,12 +31,16 @@ public class UpdateTest02 {
 			String url = "jdbc:mysql://192.168.254.31:3307/employees";
 			conn = DriverManager.getConnection(url, "hr", "hr"); // url, 아이디, 비번
 
-			// 3. Statement 생성
-			stmt = conn.createStatement();
+			// 3. SQL문 준비
+			String sql = "update dept set name = ? where no = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			// 4. 바인딩(Binding)
+			pstmt.setString(1, vo.getName());
+			pstmt.setLong(2, vo.getNo());
 
-			// 4. SQL문을 실행
-			String sql = "update dept set name = '" + vo.getName() + "'" + " where no = " + vo.getNo();
-			int count = stmt.executeUpdate(sql);
+			// 5. SQL문을 실행
+			int count = pstmt.executeUpdate();
 			result = count == 1;
 
 		} catch (ClassNotFoundException e) {
@@ -44,8 +49,8 @@ public class UpdateTest02 {
 			System.out.println("error : " + e);
 		} finally {
 			try {
-				if (stmt != null) {
-					stmt.close();
+				if (pstmt != null) {
+					pstmt.close();
 				}
 				if (conn != null) {
 					conn.close();

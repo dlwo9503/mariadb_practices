@@ -2,8 +2,8 @@ package test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DeleteTest02 {
 
@@ -14,7 +14,7 @@ public class DeleteTest02 {
 
 	public static boolean delete(Long no) {
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		boolean result = false;
 		try {
 			// 1. JDBC Driver 로딩
@@ -24,22 +24,25 @@ public class DeleteTest02 {
 			String url = "jdbc:mysql://192.168.254.31:3307/employees";
 			conn = DriverManager.getConnection(url, "hr", "hr"); // url, 아이디, 비번
 
-			// 3. Statement 생성
-			stmt = conn.createStatement();
+			// 3. SQL문 준비
+			String sql = "delete from dept where no = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			// 4. 바인딩(Binding)
+			pstmt.setLong(1, no);
 
 			// 4. SQL문을 실행
-			String sql = "delete from dept where no = " + no;
-			int count = stmt.executeUpdate(sql);
+			int count = pstmt.executeUpdate();
 			result = count == 1;
-
+			
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패 : " + e);
 		} catch (SQLException e) {
 			System.out.println("error : " + e);
 		} finally {
 			try {
-				if (stmt != null) {
-					stmt.close();
+				if (pstmt != null) {
+					pstmt.close();
 				}
 				if (conn != null) {
 					conn.close();
