@@ -45,20 +45,6 @@ public class AuthorDao {
 		return result;
 	}
 
-	private Connection getConnection() throws SQLException {
-		Connection conn = null;
-		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-
-			String url = "jdbc:mysql://192.168.254.31:3307/webdb";
-			conn = DriverManager.getConnection(url, "webdb", "webdb"); // url, 아이디, 비번
-
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패 : " + e);
-		}
-		return conn;
-	}
-
 	public List<AuthorVo> findAll() {
 		List<AuthorVo> result = new ArrayList<>();
 		
@@ -98,9 +84,22 @@ public class AuthorDao {
 				e.printStackTrace();
 			}
 		}
-
 		
 		return result;
+	}
+	
+	private Connection getConnection() throws SQLException {
+		Connection conn = null;
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+
+			String url = "jdbc:mysql://192.168.254.31:3307/webdb";
+			conn = DriverManager.getConnection(url, "webdb", "webdb"); // url, 아이디, 비번
+
+		} catch (ClassNotFoundException e) {
+			System.out.println("드라이버 로딩 실패 : " + e);
+		}
+		return conn;
 	}
 
 }
