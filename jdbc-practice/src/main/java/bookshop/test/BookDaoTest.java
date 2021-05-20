@@ -3,7 +3,7 @@ package bookshop.test;
 import bookshop.dao.BookDao;
 import bookshop.vo.BookVo;
 
-public class BokDaoTest {
+public class BookDaoTest {
 	public static void main(String[] args) {
 //		insertTest();
 	}
