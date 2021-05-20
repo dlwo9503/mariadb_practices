@@ -22,7 +22,7 @@ public class MyDriver implements Driver {
 	public Connection connect(String url, Properties info) throws SQLException {
 		System.out.println("url : " + url);
 		System.out.println("info : " + info);
-		return new MyConnection; // 수정
+		return new MyConnection(); // 수정
 	}
 
 	@Override
