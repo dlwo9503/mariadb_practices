@@ -60,7 +60,6 @@ from (select b.title as ti, avg(a.salary) as avg_salary from salaries a, titles 
 select a.dept_name, b.first_name, b.salary, a.first_name, a.salary
 from (select dm.dept_no, dm.emp_no, s.salary, e.first_name, d.dept_name from dept_manager dm, salaries s, employees e, departments d
 where dm.to_date > current_date() and s.to_date > current_date() and dm.emp_no = s.emp_no and e.emp_no = dm.emp_no and dm.dept_no = d.dept_no) a,
-(select de.dept_no, e.first_name, s.salary
-from employees e, salaries s, dept_emp de
+(select de.dept_no, e.first_name, s.salary from employees e, salaries s, dept_emp de
 where e.emp_no = s.emp_no and s.to_date > current_date() and de.to_date > current_date() and e. emp_no = de.emp_no) b
 where a.dept_no = b.dept_no and b.salary > a.salary;
