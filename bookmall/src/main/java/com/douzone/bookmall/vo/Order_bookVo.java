@@ -6,6 +6,7 @@ public class Order_bookVo { // 주문 도서
 	private Long price; // 가격
 	private Long book_no; // 서적 번호
 	private Long order_no; // 주문 번호
+	private String book_name; // 서적 제목
 	public Long getNo() {
 		return no;
 	}
@@ -36,9 +37,14 @@ public class Order_bookVo { // 주문 도서
 	public void setOrder_no(Long order_no) {
 		this.order_no = order_no;
 	}
+	public String getBook_name() {
+		return book_name;
+	}
+	public void setBook_name(String book_name) {
+		this.book_name = book_name;
+	}
 	@Override
 	public String toString() {
-		return "Order_bookVo [no=" + no + ", quantity=" + quantity + ", price=" + price + ", book_no=" + book_no
-				+ ", order_no=" + order_no + "]";
+		return "번호 : " + no + ", 도서번호 : " + book_no + ", 도서제목 : " + book_name + ", 수량 : " + quantity;
 	}
 }

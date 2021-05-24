@@ -87,7 +87,7 @@ public class BookMall {
 		vo4.setBook_no(3L);
 		new CartDao().insert(vo4);
 		
-		OrdersVo vo5 = null;
+		OrdersVo vo5 = null; // 주문
 		
 		vo5 = new OrdersVo();
 		vo5.setOrder_no("123");
@@ -96,7 +96,7 @@ public class BookMall {
 		vo5.setUser_no(1L);
 		new OrdersDao().insert(vo5);
 		
-		Order_bookVo vo6 = null;
+		Order_bookVo vo6 = null; // 주문 도서
 		
 		vo6 = new Order_bookVo();
 		vo6.setQuantity(2L);
@@ -142,17 +142,13 @@ public class BookMall {
 		System.out.println("========= 주문 리스트 =========");
 		List<OrdersVo> list5 = new OrdersDao().findAll();
 		for(OrdersVo vo : list5) {
-			System.out.println("번호 : " + vo.getNo() + " 주문 번호 : " + vo.getOrder_no()
-			+ " 결제 금액 : " + vo.getPayment_amount() + " 배송지 : " + vo.getAddress()
-			 + " 주문자 번호 : " + vo.getUser_no()); 
+			System.out.println(vo.toString());
 		}
 		
 		System.out.println("========= 주문도서 리스트 =========");
 		List<Order_bookVo> list6 = new Order_bookDao().findAll();
 		for(Order_bookVo vo : list6) {
-			System.out.println("번호 : " + vo.getNo() + " 수량 : " + vo.getQuantity()
-			+ " 가격 : " + vo.getPrice() + " 서적 번호 : " + vo.getBook_no()
-			 + " 고객 번호 : " + vo.getOrder_no()); 
+			System.out.println(vo.toString());
 		}
 	}
 }

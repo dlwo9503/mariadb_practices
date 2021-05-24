@@ -57,23 +57,21 @@ public class Order_bookDao {
 		try {
 			conn = getConnection();
 
-			String sql = "select * from order_book";
+			String sql = "select a.no, b.no, b.name, a.quantity from order_book a, book b where a.book_no = b.no";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				Long no = rs.getLong(1);
+				Long book_no = rs.getLong(2);
+				String book_name = rs.getString(3);
 				Long quantity = rs.getLong(2);
-				Long price = rs.getLong(3);
-				Long book_no = rs.getLong(4);
-				Long order_no = rs.getLong(5);
 
 				Order_bookVo vo = new Order_bookVo();
 				vo.setNo(no);
-				vo.setQuantity(quantity);
-				vo.setPrice(price);
 				vo.setBook_no(book_no);
-				vo.setOrder_no(order_no);
+				vo.setBook_name(book_name);
+				vo.setQuantity(quantity);
 				
 				result.add(vo);
 			}

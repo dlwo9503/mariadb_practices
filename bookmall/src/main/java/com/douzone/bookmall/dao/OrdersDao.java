@@ -58,23 +58,25 @@ public class OrdersDao {
 		try {
 			conn = getConnection();
 
-			String sql = "select * from orders";
+			String sql = "select a.no, a.order_no, b.name, b.email, a.price, a.address from orders a, user b where a.user_no = b.no";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				Long no = rs.getLong(1);
 				String order_no = rs.getString(2);
-				Long payment_amount = rs.getLong(3);
-				String address = rs.getString(4);
-				Long user_no = rs.getLong(5);
+				String name = rs.getString(3);
+				String email = rs.getString(4);
+				Long payment_amount = rs.getLong(5);
+				String address = rs.getString(6);
 
 				OrdersVo vo = new OrdersVo();
 				vo.setNo(no);
 				vo.setOrder_no(order_no);
+				vo.setUser_name(name);
+				vo.setUser_email(email);
 				vo.setPayment_amount(payment_amount);
 				vo.setAddress(address);
-				vo.setUser_no(user_no);
 				
 				result.add(vo);
 			}
