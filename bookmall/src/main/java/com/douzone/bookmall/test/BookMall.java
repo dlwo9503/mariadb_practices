@@ -142,9 +142,9 @@ public class BookMall {
 		System.out.println("========= 주문 리스트 =========");
 		List<OrdersVo> list5 = new OrdersDao().findAll();
 		for(OrdersVo vo : list5) {
-			System.out.println("번호 : " + vo.getNo() + " 주문 : " + vo.getOrder_no()
+			System.out.println("번호 : " + vo.getNo() + " 주문 번호 : " + vo.getOrder_no()
 			+ " 결제 금액 : " + vo.getPayment_amount() + " 배송지 : " + vo.getAddress()
-			 + " 배송지 : " + vo.getUser_no()); 
+			 + " 주문자 번호 : " + vo.getUser_no()); 
 		}
 		
 		System.out.println("========= 주문도서 리스트 =========");
@@ -152,7 +152,7 @@ public class BookMall {
 		for(Order_bookVo vo : list6) {
 			System.out.println("번호 : " + vo.getNo() + " 수량 : " + vo.getQuantity()
 			+ " 가격 : " + vo.getPrice() + " 서적 번호 : " + vo.getBook_no()
-			 + " 주문 번호 : " + vo.getOrder_no()); 
+			 + " 고객 번호 : " + vo.getOrder_no()); 
 		}
 	}
 }
