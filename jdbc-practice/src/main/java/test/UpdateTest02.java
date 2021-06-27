@@ -28,7 +28,7 @@ public class UpdateTest02 {
 			Class.forName("org.mariadb.jdbc.Driver");
 
 			// 2. 연결하기
-			String url = "jdbc:mysql://192.168.254.31:3307/employees";
+			String url = "jdbc:mysql://192.168.0.96:3307/employees";
 			conn = DriverManager.getConnection(url, "hr", "hr"); // url, 아이디, 비번
 
 			// 3. SQL문 준비

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="mariadb_practices">
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/bookmall/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/jdbc-practice/src/main/java"/>
+        <property name="context-root" value="mariadb_practices"/>
+        <property name="java-output-path" value="/mariadb_practices/bin"/>
+    </wb-module>
+</project-modules>
