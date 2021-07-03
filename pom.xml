@@ -1,15 +1,17 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.douzone</groupId>
-  <artifactId>mariadb_practices</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <modules>
-  	<module>jdbc-practice</module>
-  	<module>bookmall</module>
-  </modules>
-  
-  	<properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.douzone</groupId>
+	<artifactId>mariadb_practices</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>jdbc-practice</module>
+		<module>bookmall</module>
+	</modules>
+
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
@@ -24,7 +26,7 @@
 				</excludes>
 			</resource>
 		</resources>
-		<plugins>	<!--컴파일러 플러인-->
+		<plugins>	<!--컴파일러 플러인 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -43,5 +45,5 @@
 			</plugin>
 		</plugins>
 	</build>
-  
+
 </project>

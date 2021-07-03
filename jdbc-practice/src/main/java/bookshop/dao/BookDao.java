@@ -137,7 +137,7 @@ public class BookDao {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 
-			String url = "jdbc:mysql://192.168.0.96:3307/webdb";
+			String url = "jdbc:mysql://192.168.254.65:3307/webdb";
 			conn = DriverManager.getConnection(url, "webdb", "webdb"); // url, 아이디, 비번
 
 		} catch (ClassNotFoundException e) {

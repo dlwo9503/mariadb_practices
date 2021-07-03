@@ -103,7 +103,7 @@ public class UserDao {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 
-			String url = "jdbc:mysql://192.168.0.96:3307/bookmall";
+			String url = "jdbc:mysql://192.168.254.65:3307/bookmall";
 			conn = DriverManager.getConnection(url, "bookmall", "bookmall"); // url, 아이디, 비번
 
 		} catch (ClassNotFoundException e) {
